@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final class EloquentUserRepository implements UserRepository
 {
@@ -37,6 +38,12 @@ final class EloquentUserRepository implements UserRepository
 
     public function find($id)
     {
-        return $this->model->find($id);
+        $user = $this->model->find($id);
+
+        if (null == $user) {
+            throw new ModelNotFoundException('User not found');
+        }
+
+        return $user;
     }
 }
