@@ -16,7 +16,7 @@ final class UserCreator
         $this->repository = $repository;
     }
 
-    public function __invoke(array $data)
+    public function __invoke(array $data): User
     {
         return $this->repository->create($data);
     }

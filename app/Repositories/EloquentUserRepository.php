@@ -22,7 +22,7 @@ final class EloquentUserRepository implements UserRepository
         // return User::all();
     }
 
-    public function create(array $data)
+    public function create(array $data): User
     {
         return $this->model->create($data);
     }
