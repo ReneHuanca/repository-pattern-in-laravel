@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final class EloquentUserRepository implements UserRepository
@@ -16,7 +17,7 @@ final class EloquentUserRepository implements UserRepository
         $this->model = new User();
     }
 
-    public function all()
+    public function all(): Collection
     {
         return $this->model->all();
         // return User::all();

@@ -5,6 +5,7 @@ namespace Tests\Unit\Services;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Services\UsersList;
+use Illuminate\Database\Eloquent\Collection;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -21,17 +22,14 @@ class UserListTest extends TestCase
 
     public function test_users_list_can_be_retrieved(): void
     {
-        $usersList = [
-            new User(),
-            new User()
-        ];
+        $usersList = new Collection();
 
         $this->repository
                 ->shouldReceive('all')
                 ->andReturn($usersList);
 
-        $obtainAllUser = $this->service->__invoke(); 
+        $getAllUsers = $this->service->__invoke(); 
 
-        $this->assertEquals($usersList, $obtainAllUser);
+        $this->assertEquals($usersList, $getAllUsers);
     }
 }

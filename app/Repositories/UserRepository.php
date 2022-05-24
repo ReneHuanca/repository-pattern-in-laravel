@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 
 interface UserRepository
 {
-    public function all();
+    public function all(): Collection;
 
     public function create(array $data): User;
 
