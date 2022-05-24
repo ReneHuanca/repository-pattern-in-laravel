@@ -9,16 +9,17 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final class EloquentUserRepository implements UserRepository
 {
-    protected $model;
+    private $model;
 
-    public function __construct(User $model)
+    public function __construct()
     {
-        $this->model = $model;
+        $this->model = new User();
     }
 
     public function all()
     {
         return $this->model->all();
+        // return User::all();
     }
 
     public function create(array $data)
@@ -40,7 +41,7 @@ final class EloquentUserRepository implements UserRepository
     {
         $user = $this->model->find($id);
 
-        if (null == $user) {
+        if (null === $user) {
             throw new ModelNotFoundException('User not found');
         }
 
