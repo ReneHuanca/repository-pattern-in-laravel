@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Repositories\EloquentUserRepository;
-use App\Repositories\UserRepository;
 use App\Services\UserCreator;
-use App\Services\UserCreatorWithRepository;
 use App\Services\UsersList;
-use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,18 +16,23 @@ class UserController extends Controller
         $this->list = $list;
     }
 
-    public function create()
+    public function index()
     {
-        return view('user.create', [
+        return view('user.index', [
             'users' => $this->list->__invoke(),
         ]);
+    }
+
+    public function create()
+    {
+        return view('user.create');
     }
     
     public function store(Request $request)
     {
         $this->creator->__invoke($request->all());
 
-        return back();
+        return to_route('users.index');
     }
 
 }

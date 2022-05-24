@@ -6,7 +6,3 @@
     <input type="password" name="password" placeholder="Password"> <br>
     <button type="submit">Save</button>
 </form>
-
-@foreach($users as $user)
-<div>{{ $user->id }}: {{ $user->name }}</div>
-@endforeach
